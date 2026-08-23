@@ -496,7 +496,7 @@ else:
 
          else:
 
-              try:
+           try:
                 
                 empleado_actualizado = Empleado(
                        nombre=nuevo_nombre.strip(),
@@ -524,7 +524,7 @@ else:
 
                 st.rerun()
 
-         except ValueError as e:
+           except ValueError as e:
                  st.error(f"⚠️ {e}")
 
  # Opción eliminar
