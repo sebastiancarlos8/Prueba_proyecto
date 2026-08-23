@@ -204,6 +204,7 @@ elif modulos == "Ejercicio 2":
       st.dataframe(
          df.style.format({
             "Precio": "S/ {:.2f}",
+            "Cantidad": " {:.0f}",
             "Total": "S/ {:.2f}"
          }),
          use_container_width=True,
