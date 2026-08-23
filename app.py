@@ -492,43 +492,41 @@ else:
 
      if st.button("💾 Actualizar empleado"):
 
-         if nuevo_nombre.strip() == "":
-             st.error("⚠️ El nombre no puede estar vacío.")
+    if nuevo_nombre.strip() == "":
+        st.error("⚠️ El nombre no puede estar vacío.")
 
-         else:
+    else:
 
-             try:
+        try:
 
-                 empleado_actualizado = Empleado(
-                     nombre=nuevo_nombre.strip(),
-                     salario_base=nuevo_salario,
-                     porcentaje_bono=nuevo_bono,
-                     porcentaje_descuento=nuevo_descuento
-                 )
+            empleado_actualizado = Empleado(
+                nombre=nuevo_nombre.strip(),
+                salario_base=nuevo_salario,
+                porcentaje_bono=nuevo_bono,
+                porcentaje_descuento=nuevo_descuento
+            )
 
-                 # Reemplazar únicamente el empleado correspondiente al ID seleccionado
+            actualizado = False
 
-                 for i, registro in enumerate(
-                     st.session_state.empleados
-                 ):
+            for i, registro in enumerate(st.session_state.empleados):
 
-                     if registro["id"] == id_seleccionado:
+                if registro["id"] == id_seleccionado:
 
-                         st.session_state.empleados[i] = {
-                             "id": registro["id"],
-                             "empleado": empleado_actualizado
-                         }
+                    st.session_state.empleados[i] = {
+                        "id": registro["id"],
+                        "empleado": empleado_actualizado
+                    }
 
-                         break
+                    actualizado = True
+                    break
 
-                 st.success(
-                     "✅ Empleado actualizado correctamente."
-                 )
+            if actualizado:
+                st.success("✅ Empleado actualizado correctamente.")
+            else:
+                st.error("⚠️ No se encontró el empleado seleccionado.")
 
-                 st.rerun()
-
-             except ValueError as e:
-                 st.error(f"⚠️ {e}")
+        except ValueError as e:
+            st.error(f"⚠️ {e}")
 
  # Opción eliminar
 
