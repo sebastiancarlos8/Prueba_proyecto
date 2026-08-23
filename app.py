@@ -202,7 +202,7 @@ elif modulos == "Ejercicio 2":
   st.subheader("Registros actualizados")
   if not df.empty:
       st.dataframe(
-         st.style.format({
+         df.style.format({
             "Precio": "S/ {:.2f}",
             "Total": "S/ {:.2f}"
          }),
