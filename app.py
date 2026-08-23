@@ -497,35 +497,37 @@ else:
 
          else:
 
-           try:
-                
-                empleado_actualizado = Empleado(
-                       nombre=nuevo_nombre.strip(),
-                       salario_base=nuevo_salario,
-                       porcentaje_bono=nuevo_bono,
-                       porcentaje_descuento=nuevo_descuento
-                )
+             try:
 
-                # Reemplazar únicamente el empleado correspondiente al ID seleccionado
+                 empleado_actualizado = Empleado(
+                     nombre=nuevo_nombre.strip(),
+                     salario_base=nuevo_salario,
+                     porcentaje_bono=nuevo_bono,
+                     porcentaje_descuento=nuevo_descuento
+                 )
 
-                for i, registro in enumerate(
+                 # Reemplazar únicamente el empleado correspondiente al ID seleccionado
+
+                 for i, registro in enumerate(
                      st.session_state.empleados
-                ):
-                  
-                  if registro["id"] == id_seleccionado:
-                    
-                    st.session_state.empleados[i] = {
-                                 "id": registro["id"],
-                                 "empleado": empleado_actualizado
-                    }
+                 ):
 
-                    break
-                   
-             st.success("✅ Empleado actualizado correctamente.")
+                     if registro["id"] == id_seleccionado:
 
-             st.rerun()
+                         st.session_state.empleados[i] = {
+                             "id": registro["id"],
+                             "empleado": empleado_actualizado
+                         }
 
-           except ValueError as e:
+                         break
+
+                 st.success(
+                     "✅ Empleado actualizado correctamente."
+                 )
+
+                 st.rerun()
+
+             except ValueError as e:
                  st.error(f"⚠️ {e}")
 
  # Opción eliminar
