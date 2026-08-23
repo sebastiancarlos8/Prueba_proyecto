@@ -203,9 +203,9 @@ elif modulos == "Ejercicio 2":
 
   # Agregando la conclusión del flujo positivo o negativo de la caja
   
-  if saldo_final > 0:
+  if total > 0:
       st.success("El flujo de caja está a favor.")
-  elif saldo_final < 0:
+  elif total < 0:
       st.error("El flujo de caja está en contra.")
   else:
       st.info("El flujo de caja está equilibrado.")
