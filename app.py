@@ -520,9 +520,9 @@ else:
 
                     break
                    
-         st.success("✅ Empleado actualizado correctamente.")
+                st.success("✅ Empleado actualizado correctamente.")
 
-         st.rerun()
+                st.rerun()
 
          except ValueError as e:
                  st.error(f"⚠️ {e}")
