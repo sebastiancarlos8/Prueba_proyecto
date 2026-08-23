@@ -11,14 +11,14 @@ modulos = st.sidebar.selectbox("Seleccione un módulo",["Home","Ejercicio 1","Ej
 if modulos == "Home":
   st.title("Trabajo Práctico - Módulo Python Fundamentals")
   st.image("Python_logo.png", width = 500)
-  st.subheader("Módulo: Especialización en Python for Analytics")
+  st.subheader("🐍 Módulo: Especialización en Python for Analytics")
   st.write("**Año:** 2026")
   st.subheader("Elaborado por")
   st.write("**Nombre completo:** David Sebastian Carlos Ipanaque")
   st.subheader("Información general")
   st.markdown("""Egresado de la carrera de Ingeniería Industrial, con experiencia en analítica de datos en el sector retail, consumo masivo y seguros, dentro del área comercial y de recursos humanos. \nApasionado por la lógica, recursos humanos, uso de datos masivos y programación.""")
   st.subheader("Descripción del proyecto")
-  st.markdown("""Portafolio de ejercicios que muestran los conocimientos aplicados en Python, mediante casuísticas de la vida cotidiana que implique el uso respecto a listas, registros con NumPy, arrays, DataFrame, librerías externas y clases.""")
+  st.markdown("""Portafolio de ejercicios que muestran los conocimientos adquiridos en Python, mediante casuísticas de la vida cotidiana que implique el uso respecto a listas, arrays de NumPy, DataFrames, librerías externas y clases.""")
   st.subheader("🛠️ Tecnologías utilizadas")
   st.markdown("""Para el presente proyecto, se utilizaron las siguientes tecnologías.\n- 🔗 GitHub\n- 🎨 Streamlit\n- 🐍 Google Colab - Python\n- 🔢 NumPy\n- 🐼 Pandas\n- 📚 Librerías externas\n- 🧩 Programación Orientada a Objetos(POO)""")
   
@@ -121,7 +121,7 @@ elif modulos == "Ejercicio 1":
 
 elif modulos == "Ejercicio 2":
   
-  st.title("📦 Ejercicio 2 – NumPy, Arrays y DataFramee")
+  st.title("📦 Ejercicio 2 – NumPy, Arrays y DataFrame")
 
   st.markdown("""En este ejercicio se registrarán productos utilizando widgets de Streamlit. La información será almacenada en arreglos de NumPy y posteriormente convertida en un DataFrame de pandas para mostrar los registros actualizados.""")
   
@@ -142,7 +142,7 @@ elif modulos == "Ejercicio 2":
   
   # Registro de formulario
   
-  st.subheader("Registro de producto")
+  st.subheader("📝 Registro de producto")
   
   Nombre_producto = st.text_input("Nombre del producto")
   Categoria = st.selectbox("Categoría",["Computación","Accesorios","Electrónica", "Oficina", "Otros"])
@@ -161,28 +161,28 @@ elif modulos == "Ejercicio 2":
   
   # Botón para agregar producto
   
-  if st.button("Agregar producto"):
+  if st.button("➕ Agregar producto"):
     
     if Nombre_producto.strip() == "":
-      st.error("Debe ingresar el nombre del producto.")
+      st.error("⚠️ Debe ingresar el nombre del producto.")
   
     elif Precio <= 0:
-      st.error("El precio debe ser mayor que 0.")
+      st.error("⚠️ El precio debe ser mayor que 0.")
   
     elif Cantidad <= 0:
-      st.error("La cantidad debe ser mayor que 0.")
+      st.error("⚠️ La cantidad debe ser mayor que 0.")
   
     else:
       total = Precio * Cantidad
   
       # Agregar información a los arrays
   
-      st.session_state.nombres = np.append(st.session_state.nombres,Nombre_producto)
+      st.session_state.nombres = np.append(st.session_state.nombres,Nombre_producto.strip())
       st.session_state.categorias = np.append(st.session_state.categorias,Categoria)
       st.session_state.precios = np.append(st.session_state.precios,Precio)
       st.session_state.cantidades = np.append(st.session_state.cantidades,Cantidad)
       st.session_state.totales = np.append(st.session_state.totales,total)
-      st.success("Producto agregado correctamente.")
+      st.success("✅ Producto agregado correctamente.")
   
       
       
@@ -199,11 +199,10 @@ elif modulos == "Ejercicio 2":
     # Mostrar DataFrame
     # --------------------------------------------------
       
-  st.subheader("Registros actualizados")
+  st.subheader("📋 Registros actualizados")
   if not df.empty:
       st.dataframe(
          df.style.format({
-            "Cantidad": {:.1f}",
             "Precio": "S/ {:.2f}",
             "Total": "S/ {:.2f}"
          }),
@@ -211,7 +210,7 @@ elif modulos == "Ejercicio 2":
          hide_index=True
       )
   else:
-    st.info("Aún no hay datos registrados.")
+    st.info("ℹ️ Aún no hay datos registrados.")
 
 elif modulos == "Ejercicio 3":
   st.title("📈 Ejercicio 3 – Funciones externas")
