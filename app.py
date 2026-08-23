@@ -494,7 +494,7 @@ else:
          if nuevo_nombre.strip() == "":
              st.error("⚠️ El nombre no puede estar vacío.")
 
-           else:
+         else:
 
               try:
                 
@@ -520,11 +520,11 @@ else:
 
                     break
                    
-           st.success("✅ Empleado actualizado correctamente.")
+         st.success("✅ Empleado actualizado correctamente.")
 
-           st.rerun()
+         st.rerun()
 
-           except ValueError as e:
+         except ValueError as e:
                  st.error(f"⚠️ {e}")
 
  # Opción eliminar
