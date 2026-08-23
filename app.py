@@ -441,96 +441,91 @@ else:
        st.info("ℹ️ No hay empleados registrados para actualizar.")
 
    else:
-
-       opciones_empleados = {
+     
+     opciones_empleados = {
                 f"ID {registro['id']} - "
                 f"{registro['empleado'].nombre}": registro["id"]
                 for registro in st.session_state.empleados
-            }
+     }
 
-            empleado_seleccionado = st.selectbox(
-                "Seleccione el empleado:",
-                list(opciones_empleados.keys())
-            )
+     empleado_seleccionado = st.selectbox("Seleccione el empleado:", list(opciones_empleados.keys()))
 
-            id_seleccionado = opciones_empleados[empleado_seleccionado]
-
-       registro = next(
-              registro
-              for registro in st.session_state.empleados
-              if registro["id"] == id_seleccionado
-       )
-
-       empleado = registro["empleado"]
+     id_seleccionado = opciones_empleados[empleado_seleccionado]
      
-       nuevo_nombre = st.text_input(
-           "Nombre",
-           value=empleado.nombre
+     registro = next(
+            registro
+            for registro in st.session_state.empleados
+            if registro["id"] == id_seleccionado
+     )
+
+     empleado = registro["empleado"]
+     
+     nuevo_nombre = st.text_input(
+         "Nombre",
+         value=empleado.nombre
        )
 
-       nuevo_salario = st.number_input(
-           "Salario base",
-           min_value=0.01,
-           value=float(empleado.salario_base),
-           step=100.00,
-           format="%.2f"
-       )
+     nuevo_salario = st.number_input(
+         "Salario base",
+         min_value=0.01,
+         value=float(empleado.salario_base),
+         step=100.00,
+         format="%.2f"
+     )
 
-       nuevo_bono = st.number_input(
-           "Porcentaje de bono (%)",
-           min_value=0.0,
-           max_value=100.0,
-           value=float(empleado.porcentaje_bono),
-           step=1.0
-       )
+     nuevo_bono = st.number_input(
+         "Porcentaje de bono (%)",
+         min_value=0.0,
+         max_value=100.0,
+         value=float(empleado.porcentaje_bono),
+         step=1.0
+     )
 
-       nuevo_descuento = st.number_input(
-           "Porcentaje de descuento (%)",
-           min_value=0.0,
-           max_value=100.0,
-           value=float(empleado.porcentaje_descuento),
-           step=1.0
-       )
+     nuevo_descuento = st.number_input(
+         "Porcentaje de descuento (%)",
+         min_value=0.0,
+         max_value=100.0,
+         value=float(empleado.porcentaje_descuento),
+         step=1.0
+     )
 
-       if st.button("💾 Actualizar empleado"):
+     if st.button("💾 Actualizar empleado"):
 
-           if nuevo_nombre.strip() == "":
-               st.error("⚠️ El nombre no puede estar vacío.")
+         if nuevo_nombre.strip() == "":
+             st.error("⚠️ El nombre no puede estar vacío.")
 
            else:
 
-               try:
-
-                   empleado_actualizado = Empleado(
+              try:
+                
+                empleado_actualizado = Empleado(
                        nombre=nuevo_nombre.strip(),
                        salario_base=nuevo_salario,
                        porcentaje_bono=nuevo_bono,
                        porcentaje_descuento=nuevo_descuento
-                   )
+                )
 
-                   # Reemplazar únicamente el empleado correspondiente al ID seleccionado
+                # Reemplazar únicamente el empleado correspondiente al ID seleccionado
 
-                   for i, registro in enumerate(
-                       st.session_state.empleados
-                   ):
+                for i, registro in enumerate(
+                     st.session_state.empleados
+                ):
+                  
+                  if registro["id"] == id_seleccionado:
+                    
+                    st.session_state.empleados[i] = {
+                                 "id": registro["id"],
+                                 "empleado": empleado_actualizado
+                    }
 
-                            if registro["id"] == id_seleccionado:
-
-                                st.session_state.empleados[i] = {
-                                    "id": registro["id"],
-                                    "empleado": empleado_actualizado
-                                }
-
-                                break
+                    break
                    
-                   st.success(
-                       "✅ Empleado actualizado correctamente."
-                   )
+           st.success("✅ Empleado actualizado correctamente.")
 
-                   st.rerun()
+           st.rerun()
 
-               except ValueError as e:
-                   st.error(f"⚠️ {e}")
+           except ValueError as e:
+                 st.error(f"⚠️ {e}")
 
  # Opción eliminar
 
