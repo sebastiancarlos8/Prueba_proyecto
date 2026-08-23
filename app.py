@@ -192,14 +192,14 @@ elif modulos == "Ejercicio 2":
     # --------------------------------------------------
       
   st.subheader("Registros actualizados")
-  if not df.empty:
-      st.dataframe(
-         df,
-         use_container_width=True,
-         hide_index=True
-      )
-  else:
-    st.info("Aún no hay datos registrados.")
+    if not df.empty:
+        st.dataframe(
+           df,
+           use_container_width=True,
+           hide_index=True
+        )
+    else:
+      st.info("Aún no hay datos registrados.")
 
   # Agregando la conclusión del flujo positivo o negativo de la caja
   
