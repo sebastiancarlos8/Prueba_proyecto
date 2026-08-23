@@ -492,41 +492,42 @@ else:
 
      if st.button("💾 Actualizar empleado"):
 
-     if nuevo_nombre.strip() == "":
-        st.error("⚠️ El nombre no puede estar vacío.")
-
-     else:
-
-         try:
-
-             empleado_actualizado = Empleado(
-                 nombre=nuevo_nombre.strip(),
-                 salario_base=nuevo_salario,
-                 porcentaje_bono=nuevo_bono,
-                 porcentaje_descuento=nuevo_descuento
-             )
-
-             actualizado = False
-
-             for i, registro in enumerate(st.session_state.empleados):
-
-                 if registro["id"] == id_seleccionado:
-
-                     st.session_state.empleados[i] = {
-                         "id": registro["id"],
-                         "empleado": empleado_actualizado
-                     }
-
-                     actualizado = True
-                     break
-
-             if actualizado:
-                 st.success("✅ Empleado actualizado correctamente.")
-             else:
-                 st.error("⚠️ No se encontró el empleado seleccionado.")
-
-         except ValueError as e:
-             st.error(f"⚠️ {e}")
+       if nuevo_nombre.strip() == "":
+          st.error("⚠️ El nombre no puede estar vacío.")
+  
+       else:
+  
+           try:
+  
+               empleado_actualizado = Empleado(
+                   nombre=nuevo_nombre.strip(),
+                   salario_base=nuevo_salario,
+                   porcentaje_bono=nuevo_bono,
+                   porcentaje_descuento=nuevo_descuento
+               )
+  
+               actualizado = False
+  
+               for i, registro in enumerate(st.session_state.empleados):
+  
+                   if registro["id"] == id_seleccionado:
+  
+                       st.session_state.empleados[i] = {
+                           "id": registro["id"],
+                           "empleado": empleado_actualizado
+                       }
+  
+                       actualizado = True
+                       break
+  
+               if actualizado:
+                   st.success("✅ Empleado actualizado correctamente.")
+               else:
+                   st.error("⚠️ No se encontró el empleado seleccionado.")
+  
+           except ValueError as e:
+               st.error(f"⚠️ {e}")
+             
  # Opción eliminar
 
  elif opcion == "Eliminar empleado":
