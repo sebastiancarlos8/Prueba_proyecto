@@ -110,9 +110,9 @@ elif modulos == "Ejercicio 1":
   else:
     st.info("No hay movimientos registrados.")
 
-  if total > 0:
+  if saldo_final > 0:
       st.success("El flujo de caja está a favor.")
-  elif total < 0:
+  elif saldo_final < 0:
       st.error("El flujo de caja está en contra.")
   else:
       st.info("El flujo de caja está equilibrado.")
