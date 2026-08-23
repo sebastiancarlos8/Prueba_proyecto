@@ -203,6 +203,7 @@ elif modulos == "Ejercicio 2":
   if not df.empty:
       st.dataframe(
          df.style.format({
+            "Cantidad": {:.f}",
             "Precio": "S/ {:.2f}",
             "Total": "S/ {:.2f}"
          }),
