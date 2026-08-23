@@ -16,14 +16,18 @@ if modulos == "Home":
   st.subheader("Elaborado por")
   st.write("**Nombre completo:** David Sebastian Carlos Ipanaque")
   st.subheader("Información general")
-  st.markdown("""Egresado de la carrera de Ingeniería Industrial, con experiencia en análitica de datos en el sector retail, consumo masivo y seguros, dentro del área comercial y de recursos humanos. \nApasionado por la lógica, recursos humanos, uso de datos masivos y programación.""")
+  st.markdown("""Egresado de la carrera de Ingeniería Industrial, con experiencia en analítica de datos en el sector retail, consumo masivo y seguros, dentro del área comercial y de recursos humanos. \nApasionado por la lógica, recursos humanos, uso de datos masivos y programación.""")
   st.subheader("Descripción del proyecto")
-  st.markdown("""Portafolio de ejercicios que muestran los conocimientos aplicados en Python, mediantes casuísticas de la vida cotidiana que implique el uso respecto a listas, registros con NumPy, arrays, DataFrame, librerías externas y clases.""")
-  st.subheader("Tecnologías utilizadas")
-  st.markdown("""""")
+  st.markdown("""Portafolio de ejercicios que muestran los conocimientos aplicados en Python, mediante casuísticas de la vida cotidiana que implique el uso respecto a listas, registros con NumPy, arrays, DataFrame, librerías externas y clases.""")
+  st.subheader("🛠️ Tecnologías utilizadas")
+  st.markdown("""Para el presente proyecto, se utilizaron las siguientes tecnologías.\n- 🔗 GitHub\n- 🎨 Streamlit\n- 🐍 Google Colab - Python\n- 🔢 NumPy\n- 🐼 Pandas\n- 📚 Librerías externas\n- 🧩 Programación Orientada a Objetos(POO)""")
   
 elif modulos == "Ejercicio 1":
-  st.title("Bienvenido al módulo de Ejercicio 1 – Flujo de caja con listas")
+  st.title("💰 Ejercicio 1 – Flujo de caja con listas")
+
+  st.markdown("""Este ejercicio registra movimientos financieros utilizando una lista.\nCada movimiento contiene un concepto, tipo de movimiento y monto.
+  
+  \nFinalmente, la aplicación calcula los ingresos, gastos y saldo final e indica si el flujo de caja se encuentra a favor, en contra o equilibrado.""")
 
   # -------------------------
   # Registro del movimiento
@@ -34,21 +38,21 @@ elif modulos == "Ejercicio 1":
 
   # Variables
 
-  st.subheader("Registro del movimiento")
+  st.subheader("📝 Registro del movimiento")
   
   Concepto = st.text_input("Concepto")
   Tipo = st.selectbox("Tipo de movimiento",["Ingreso","Gasto"])
   Monto = st.number_input("Monto",min_value=0.0, step = 0.01, format="%.2f")
   
-  if st.button("Registrar movimiento"):
+  if st.button("➕ Registrar movimiento"):
 
   # Validación de variables
 
     if Concepto.strip() == "":
-      st.error("Debe ingresar un concepto")
+      st.error("⚠️ Debe ingresar un concepto.")
 
     elif Monto <= 0:
-      st.error("El monto debe ser mayor que S/ 0.00.")
+      st.error("⚠️ El monto debe ser mayor que S/ 0.00.")
 
     else:
       
@@ -60,7 +64,7 @@ elif modulos == "Ejercicio 1":
 
       st.session_state.flujos.append(flujo)
 
-      st.success("Movimiento registrado de manera correcta")
+      st.success("✅ Movimiento registrado correctamente.")
 
   # -------------------------
   # Cálculos
@@ -82,9 +86,7 @@ elif modulos == "Ejercicio 1":
 
   # Resumen de flujos
   
-  st.subheader("Flujo de caja")
-
-  st.subheader("Resumen")
+  st.subheader("📊 Resumen del flujo de caja")
 
   col1, col2, col3 = st.columns(3)
 
@@ -97,8 +99,14 @@ elif modulos == "Ejercicio 1":
   with col3:
       st.metric("Saldo final", f"S/ {saldo_final:.2f}")
 
+  if saldo_final > 0:
+      st.success("🟢 El flujo de caja está a favor.")
+  elif saldo_final < 0:
+      st.error("El flujo de caja está en contra.")
+  else:
+      st.info("El flujo de caja está equilibrado.")
 
-  st.subheader("Flujos realizado")
+  st.subheader("📋 Flujos realizados")
   
   if len(st.session_state.flujos) > 0:
         st.dataframe(
@@ -108,18 +116,12 @@ elif modulos == "Ejercicio 1":
       )
   
   else:
-    st.info("No hay movimientos registrados.")
+    st.info("ℹ️ No hay movimientos registrados.")
 
-  if saldo_final > 0:
-      st.success("El flujo de caja está a favor.")
-  elif saldo_final < 0:
-      st.error("El flujo de caja está en contra.")
-  else:
-      st.info("El flujo de caja está equilibrado.")
 
 elif modulos == "Ejercicio 2":
   
-  st.title("Bienvenido al módulo de Ejercicio 2 – Registro con NumPy, arrays y DataFrame")
+  st.title("📦 Ejercicio 2 – NumPy, Arrays y DataFramee")
 
   st.markdown("""En este ejercicio se registrarán productos utilizando widgets de Streamlit. La información será almacenada en arreglos de NumPy y posteriormente convertida en un DataFrame de pandas para mostrar los registros actualizados.""")
   
@@ -200,7 +202,10 @@ elif modulos == "Ejercicio 2":
   st.subheader("Registros actualizados")
   if not df.empty:
       st.dataframe(
-         df,
+         st.style.format({
+            "Precio": "S/ {:.2f}",
+            "Total": "S/ {:.2f}"
+         }),
          use_container_width=True,
          hide_index=True
       )
@@ -208,7 +213,9 @@ elif modulos == "Ejercicio 2":
     st.info("Aún no hay datos registrados.")
 
 elif modulos == "Ejercicio 3":
-  st.title("Bienvenido al módulo de Ejercicio 3 – Uso de funciones desde una librería externa")
+  st.title("📈 Ejercicio 3 – Funciones externas")
+
+  st.markdown("""En este ejercicio se utiliza una función de una librería externa para calcular el valor futuro de una inversión mediante interés compuesto.\nEl resultado de cada cálculo se almacena en un histórico.""")
 
   funcion = st.selectbox(
     "Seleccione la función:",
@@ -218,7 +225,7 @@ elif modulos == "Ejercicio 3":
   if "historico_inversion" not in st.session_state:
       st.session_state.historico_inversion = []
    
-  st.subheader("Ingrese los datos de la inversión")
+  st.subheader("📝 Datos de la inversión")
   monto_inicial = st.number_input(
     "Monto inicial ($)",
     min_value=0.01,
@@ -248,9 +255,12 @@ elif modulos == "Ejercicio 3":
   )
   
   
-  if st.button("Calcular valor futuro"):
+  if st.button("📈 Calcular valor futuro"):
 
     try:
+
+      if funcion == "calcular_valor_futuro":
+
         resultado = lf.calcular_valor_futuro(
             monto_inicial,
             tasa_anual_pct,
@@ -259,9 +269,9 @@ elif modulos == "Ejercicio 3":
         )
 
         # Mostrar resultado
-        st.success("Cálculo realizado correctamente")
+        st.success("✅ Cálculo realizado correctamente")
 
-        st.write("### Resultado")
+        st.subheader("💰 Resultado")
 
         st.write(
             f"**Valor futuro:** ${resultado['valor_futuro']:,.2f}"
@@ -283,8 +293,8 @@ elif modulos == "Ejercicio 3":
 
         st.session_state.historico_inversion.append(registro)
 
-    except Exception as e:
-       st.error(f"Error: {e}")
+    except ValueError as e:
+       st.error(f"⚠️ {e}")
   
   st.subheader("📊 Histórico de resultados")
     
@@ -294,25 +304,33 @@ elif modulos == "Ejercicio 3":
   
       st.dataframe(
           df_historial,
-          use_container_width=True
+          use_container_width=True,
+          hide_index=True
       )
   
   else:
-      st.info("Todavía no se han realizado cálculos.")
-
+      st.info("ℹ️ Todavía no se han realizado cálculos.")
+  
 else:
- st.title("Bienvenido al módulo de Ejercicio 4 – Uso de clases desde una librería externa con CRUD")
+ st.title("👤 Ejercicio 4 – Clases externas y CRUD")
+
+ st.markdown("""Este ejercicio implementa un CRUD utilizando la clase 'Empleado' desde una librería externa (librería de clases).\nLa aplicación permite crear, consultar, actualizar y eliminar
+    empleados, utilizando los atributos y métodos definidos en la clase.
+    """)
 
  if "empleados" not in st.session_state:
    st.session_state.empleados = []
 
- opcion = st.selectbox("Selecciona una operación:",["Crear empleado","Ver empleados","Actualizar empleado","Eliminar empleado"])
+ if "contador_empleados" not in st.session_state:
+    st.session_state.contador_empleados = 0
 
+ opcion = st.selectbox("Seleccione una operación:",["Crear empleado", "Ver empleados", "Actualizar empleado", "Eliminar empleado"])
+ 
  # Opción Crear
 
  if opcion == "Crear empleado":
 
-   st.header("Crear empleado")
+   st.header("➕ Crear empleado")
 
    nombre = st.text_input(
         "Nombre del empleado"
@@ -341,54 +359,73 @@ else:
         step=1.0
    )
 
-   if st.button("Crear empleado"):
+   if st.button("💾 Crear empleado"):
 
        if nombre.strip() == "":
-           st.error("Debes ingresar el nombre del empleado.")
+           st.error("⚠️ Debes ingresar el nombre del empleado.")
 
        else:
 
            try:
 
                nuevo_empleado = Empleado(
-                    nombre=nombre,
+                    nombre=nombre.strip(),
                     salario_base=salario_base,
                     porcentaje_bono=porcentaje_bono,
                     porcentaje_descuento=porcentaje_descuento
                )
 
+               st.session_state.contador_empleados += 1
+
+               nuevo_registro = {"id": st.session_state.contador_empleados, "empleado": nuevo_empleado}
+
+               # Guarda el registro
+               
                st.session_state.empleados.append(
-                    nuevo_empleado
+                    nuevo_registro
                )
 
                st.success(
-                    f"El empleado {nombre} fue creado correctamente."
+                    f"✅ El empleado {nombre.strip()} "
+                    "fue creado correctamente."
                )
 
            except ValueError as e:
-               st.error(str(e))
+               st.error(f"⚠️ {e}")
 
  # Opción Leer
 
  elif opcion == "Ver empleados":
 
-   st.header("Lista de empleados")
+   st.header("📋 Lista de empleados")
 
    if len(st.session_state.empleados) == 0:
 
-       st.info("No hay empleados registrados.")
+       st.info("ℹ️ No hay empleados registrados.")
 
    else:
 
        registros = []
 
-       for empleado in st.session_state.empleados:
-           registros.append(
-               empleado.resumen()
-           )
+       for registro in st.session_state.empleados:
+
+           empleado = registro["empleado"]
+           resumen = empleado.resumen()
+           registros.append({
+                    "ID": registro["id"],
+                    "Nombre": resumen["nombre"],
+                    "Salario base": resumen["salario_base"],
+                    "Bono": resumen["bono"],
+                    "Descuento": resumen["descuento"],
+                    "Salario neto": resumen["salario_neto"]
+           })
+
+       df_empleados = pd.DataFrame(
+                registros
+       )
 
        st.dataframe(
-            registros,
+            df_empleados,
             use_container_width=True,
             hide_index=True
        )
@@ -397,30 +434,35 @@ else:
 
  elif opcion == "Actualizar empleado":
 
-   st.header("Actualizar empleado")
+   st.header("✏️ Actualizar empleado")
 
    if len(st.session_state.empleados) == 0:
 
-       st.info("No hay empleados registrados para actualizar.")
+       st.info("ℹ️ No hay empleados registrados para actualizar.")
 
    else:
 
-       nombres = [
-           empleado.nombre
-           for empleado in st.session_state.empleados
-       ]
+       opciones_empleados = {
+                f"ID {registro['id']} - "
+                f"{registro['empleado'].nombre}": registro["id"]
+                for registro in st.session_state.empleados
+            }
 
-       nombre_seleccionado = st.selectbox(
-           "Selecciona el empleado:",
-           nombres
+            empleado_seleccionado = st.selectbox(
+                "Seleccione el empleado:",
+                list(opciones_empleados.keys())
+            )
+
+            id_seleccionado = opciones_empleados[empleado_seleccionado]
+
+       registro = next(
+              registro
+              for registro in st.session_state.empleados
+              if registro["id"] == id_seleccionado
        )
 
-       empleado = next(
-           empleado
-           for empleado in st.session_state.empleados
-           if empleado.nombre == nombre_seleccionado
-       )
-
+       empleado = registro["empleado"]
+     
        nuevo_nombre = st.text_input(
            "Nombre",
            value=empleado.nombre
@@ -430,7 +472,8 @@ else:
            "Salario base",
            min_value=0.01,
            value=float(empleado.salario_base),
-           step=100.00
+           step=100.00,
+           format="%.2f"
        )
 
        nuevo_bono = st.number_input(
@@ -449,71 +492,95 @@ else:
            step=1.0
        )
 
-       if st.button("Actualizar empleado"):
+       if st.button("💾 Actualizar empleado"):
 
            if nuevo_nombre.strip() == "":
-               st.error("El nombre no puede estar vacío.")
+               st.error("⚠️ El nombre no puede estar vacío.")
 
            else:
 
                try:
 
                    empleado_actualizado = Empleado(
-                       nombre=nuevo_nombre,
+                       nombre=nuevo_nombre.strip(),
                        salario_base=nuevo_salario,
                        porcentaje_bono=nuevo_bono,
                        porcentaje_descuento=nuevo_descuento
                    )
 
-                   indice = st.session_state.empleados.index(
-                       empleado
-                   )
+                   # Reemplazar únicamente el empleado correspondiente al ID seleccionado
 
-                   st.session_state.empleados[indice] = (
-                       empleado_actualizado
-                   )
+                   for i, registro in enumerate(
+                       st.session_state.empleados
+                   ):
 
+                            if registro["id"] == id_seleccionado:
+
+                                st.session_state.empleados[i] = {
+                                    "id": registro["id"],
+                                    "empleado": empleado_actualizado
+                                }
+
+                                break
+                   
                    st.success(
-                       "Empleado actualizado correctamente."
+                       "✅ Empleado actualizado correctamente."
                    )
 
                    st.rerun()
 
                except ValueError as e:
-                   st.error(str(e))
+                   st.error(f"⚠️ {e}")
 
  # Opción eliminar
 
  elif opcion == "Eliminar empleado":
 
-   st.header("Eliminar empleado")
+   st.header("🗑️ Eliminar empleado")
 
    if len(st.session_state.empleados) == 0:
 
-       st.info("No hay empleados registrados para eliminar.")
+       st.info("ℹ️ No hay empleados registrados para eliminar.")
 
    else:
+       
+       opciones_empleados = {
+                f"ID {registro['id']} - "
+                f"{registro['empleado'].nombre}": registro["id"]
+                for registro in st.session_state.empleados
+            }
 
-       nombres = [
-           empleado.nombre
-           for empleado in st.session_state.empleados
-       ]
+            empleado_seleccionado = st.selectbox(
+                "Seleccione el empleado:",
+                list(opciones_empleados.keys())
+            )
 
-       nombre_eliminar = st.selectbox(
-           "Selecciona el empleado:",
-           nombres
-       )
+            id_eliminar = opciones_empleados[
+                empleado_seleccionado
+            ]
 
-       if st.button("Eliminar empleado"):
+            # Obtener nombre para mostrar el mensaje
+            registro_eliminar = next(
+                registro
+                for registro in st.session_state.empleados
+                if registro["id"] == id_eliminar
+            )
 
-           st.session_state.empleados = [
-               empleado
-               for empleado in st.session_state.empleados
-               if empleado.nombre != nombre_eliminar
-           ]
+            nombre_eliminar = (
+                registro_eliminar["empleado"].nombre
+            )
 
-           st.success(
-               f"El empleado {nombre_eliminar} fue eliminado correctamente."
-           )
+            if st.button("🗑️ Eliminar empleado"):
 
-           st.rerun()
+                st.session_state.empleados = [
+                    registro
+                    for registro in st.session_state.empleados
+                    if registro["id"] != id_eliminar
+                ]
+
+                st.success(
+                    f"✅ El empleado {nombre_eliminar} "
+                    "fue eliminado correctamente."
+                )
+
+                st.rerun()
