@@ -201,6 +201,15 @@ elif modulos == "Ejercicio 2":
   else:
     st.info("Aún no hay datos registrados.")
 
+  # Agregando la conclusión del flujo positivo o negativo de la caja
+  
+  if saldo_final > 0:
+      st.success("El flujo de caja está a favor.")
+  elif saldo_final < 0:
+      st.error("El flujo de caja está en contra.")
+  else:
+      st.info("El flujo de caja está equilibrado.")
+
 elif modulos == "Ejercicio 3":
   st.title("Bienvenido al módulo de Ejercicio 3 – Uso de funciones desde una librería externa")
 
