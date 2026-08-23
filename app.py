@@ -539,7 +539,7 @@ else:
 
    else:
        
-       opciones_empleados = {
+            opciones_empleados = {
                 f"ID {registro['id']} - "
                 f"{registro['empleado'].nombre}": registro["id"]
                 for registro in st.session_state.empleados
