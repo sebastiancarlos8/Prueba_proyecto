@@ -322,7 +322,7 @@ elif modulos == "Ejercicio 3":
               "Valor futuro": "S/ {:,.2f}",
               "Interés ganado": "S/ {:,.2f}",
               "Tasa anual (%)": "{:.2f}%",
-              "Años": "{:.1f}",
+              "Años": "{:.0f}",
               "Capitalizaciones/año": "{:.0f}"
           }),
           use_container_width=True,
