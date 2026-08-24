@@ -317,7 +317,14 @@ elif modulos == "Ejercicio 3":
       df_historial = pd.DataFrame(st.session_state.historico_inversion)
   
       st.dataframe(
-          df_historial,
+      df_historial.style.format({
+              "Monto inicial": "S/ {:,.2f}",
+              "Valor futuro": "S/ {:,.2f}",
+              "Interés ganado": "S/ {:,.2f}",
+              "Tasa anual (%)": "{:.2f}%",
+              "Años": "{:.1f}",
+              "Capitalizaciones/año": "{:.0f}"
+          }),
           use_container_width=True,
           hide_index=True
       )
