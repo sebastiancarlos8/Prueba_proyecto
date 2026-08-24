@@ -109,9 +109,13 @@ elif modulos == "Ejercicio 1":
 
   st.subheader("📋 Flujos realizados")
   
+  df_flujos = pd.DataFrame(st.session_state.flujos)
+  
   if len(st.session_state.flujos) > 0:
         st.dataframe(
-          st.session_state.flujos,
+          df_flujos.style.format({
+              "Monto": "S/ {:.2f}"
+          }),
           use_container_width=True,
           hide_index=True
       )
