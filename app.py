@@ -23,11 +23,12 @@ if modulos == "Home":
   st.markdown("""Para el presente proyecto, se utilizaron las siguientes tecnologías.\n- 🔗 GitHub\n- 🎨 Streamlit\n- 🐍 Google Colab - Python\n- 🔢 NumPy\n- 🐼 Pandas\n- 📚 Librerías externas\n- 🧩 Programación Orientada a Objetos(POO)""")
   
 elif modulos == "Ejercicio 1":
-  st.title("💰 Ejercicio 1 – Flujo de caja con listas")
+  st.title("💰 Control de Flujo de Caja")
 
-  st.markdown("""Este ejercicio registra movimientos financieros utilizando una lista.\nCada movimiento contiene un concepto, tipo de movimiento y monto.
-  
-  \nFinalmente, la aplicación calcula los ingresos, gastos y saldo final e indica si el flujo de caja se encuentra a favor, en contra o equilibrado.""")
+  st.markdown("""El módulo muestra un sistema para registrar y controlar movimientos financieros.\nEs necesario ingresar el concepto, tipo de movimiento e importe, clasificándolo como ingreso o gasto.
+
+  Los registros se almacenan en una lista y posteriormente se procesan para obtener el total de ingresos, total de gastos y saldo final. Finalmente, el sistema interpreta el resultado e indica si el flujo de caja
+  se encuentra a favor, en contra o equilibrado.""")
 
   # -------------------------
   # Registro del movimiento
@@ -121,9 +122,12 @@ elif modulos == "Ejercicio 1":
 
 elif modulos == "Ejercicio 2":
   
-  st.title("📦 Ejercicio 2 – NumPy, Arrays y DataFrame")
+  st.title("📦 Registro de productos")
 
-  st.markdown("""En este ejercicio se registrarán productos utilizando widgets de Streamlit. La información será almacenada en arreglos de NumPy y posteriormente convertida en un DataFrame de pandas para mostrar los registros actualizados.""")
+  st.markdown("""En este módulo se presenta un formulario para registrar productos y obtener el valor total de cada registro a partir de su precio y cantidad.
+
+  La información ingresada se almacena inicialmente en diferentes arrays de NumPy y posteriormente se almacena en un DataFrame de pandas para facilitar su visualización y organización. Cada vez que se agrega 
+  un producto, la tabla se actualiza mostrando la información registrada.""")
   
   if "nombres" not in st.session_state:
       st.session_state.nombres = np.array([])
@@ -214,9 +218,14 @@ elif modulos == "Ejercicio 2":
     st.info("ℹ️ Aún no hay datos registrados.")
 
 elif modulos == "Ejercicio 3":
-  st.title("📈 Ejercicio 3 – Funciones externas")
+  st.title("📈 Simulador de inversión")
 
-  st.markdown("""En este ejercicio se utiliza una función de una librería externa para calcular el valor futuro de una inversión mediante interés compuesto.\nEl resultado de cada cálculo se almacena en un histórico.""")
+  st.markdown("""En este módulo se desarrolló un pequeño simulador para estimar el crecimiento de una inversión mediante el cálculo de interés compuesto.
+  
+  El usuario debe ingresar el monto inicial, la tasa anual, el número de años y la cantidad de capitalizaciones por año.\nEstos parámetros son enviados a una función desarrollada en una librería externa, que calcula el valor futuro y el interés generado.
+  
+  Cada cálculo realizado se almacena en un histórico y posteriormente se presenta mediante un DataFrame 
+  para facilitar su consulta.""")
 
   funcion = st.selectbox(
     "Seleccione la función:",
@@ -228,23 +237,23 @@ elif modulos == "Ejercicio 3":
    
   st.subheader("📝 Datos de la inversión")
   monto_inicial = st.number_input(
-    "Monto inicial ($)",
+    "Monto inicial (S/)",
     min_value=0.01,
-    value=1000.00,
+    value=5000.00,
     step=100.00
   )
 
   tasa_anual_pct = st.number_input(
       "Tasa anual (%)",
       min_value=0.01,
-      value=5.00,
+      value=2.75,
       step=0.5
   )
   
   anios = st.number_input(
       "Número de años",
       min_value=0.1,
-      value=5.0,
+      value=3.0,
       step=0.5
   )
   
@@ -313,10 +322,14 @@ elif modulos == "Ejercicio 3":
       st.info("ℹ️ Todavía no se han realizado cálculos.")
   
 else:
- st.title("👤 Ejercicio 4 – Clases externas y CRUD")
+ st.title("👤 Gestión de bonos para empleados")
 
- st.markdown("""Este ejercicio implementa un CRUD utilizando la clase 'Empleado' desde una librería externa (librería de clases).\nLa aplicación permite crear, consultar, actualizar y eliminar
-    empleados, utilizando los atributos y métodos definidos en la clase.
+ st.markdown("""En este módulo se desarrolló un sistema básico para la gestión de empleados. 
+
+  La aplicación permite crear y gestionar los registros. El usuario puede registrar empleados indicando su nombre, salario base, porcentaje de bono 
+  y porcentaje de descuento. Además, puede consultar los registros, actualizar su información y eliminar empleados.
+  
+  La clase permite calcular el bono, descuento y salario neto de cada empleado, cuyos resultados son presentados de forma organizada en un DataFrame.
     """)
 
  if "empleados" not in st.session_state:
@@ -340,7 +353,7 @@ else:
    salario_base = st.number_input(
         "Salario base",
         min_value=0.01,
-        value=1000.00,
+        value=1130.00,
         step=100.00
    )
 
@@ -527,7 +540,7 @@ else:
   
            except ValueError as e:
                st.error(f"⚠️ {e}")
-             
+
  # Opción eliminar
 
  elif opcion == "Eliminar empleado":
