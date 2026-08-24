@@ -450,7 +450,12 @@ else:
        )
 
        st.dataframe(
-            df_empleados,
+            df_empleados.style.format({
+                "Salario base": "S/ {:,.2f}",
+                "Bono": "S/ {:,.2f}",
+                "Descuento": "S/ {:,.2f}",
+                "Salario neto": "S/ {:,.2f}"
+            }),
             use_container_width=True,
             hide_index=True
        )
